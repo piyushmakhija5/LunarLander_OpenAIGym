@@ -24,7 +24,7 @@ def pid_func(env, observation):
     # PD control for angle:
     # observation[4]: angle, observation[5]; angularSpeed
     angle_PID = (target_angle - observation[4]) - (observation[5])
-    print("target_angle=%f, angle_todo=%f" % (target_angle, angle_PID))
+    #print("target_angle=%f, angle_todo=%f" % (target_angle, angle_PID))
 
     # PD control for descent:
     # observation[1]: y coordinate, observation[3]: vy i.e. dy/dt i.e. velocity in y direction
@@ -43,7 +43,7 @@ def pid_func(env, observation):
     elif angle_PID > +0.05: action = 1
     return action
 
-
+# 100 trials for landing
 for t in range(100):
     observation = env.reset()
     while 1:
@@ -57,6 +57,4 @@ for t in range(100):
             break
 
 env.close()
-
-gym.upload(tdir, api_key='sk_Gqt95VROQISAFiodnh8C5A')
 
